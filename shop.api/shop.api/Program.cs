@@ -1,4 +1,8 @@
 
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using shop.api.Data;
+
 namespace shop.api
 {
     public class Program
@@ -9,8 +13,12 @@ namespace shop.api
 
             
             builder.Services.AddControllers();
-           
+            builder.Services.AddSwaggerGen(); 
             builder.Services.AddOpenApi();
+            builder.Services.AddDbContext<ApplicationDbContext>(Options =>
+            {
+                Options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection"));
+            });
 
             var app = builder.Build();
 
@@ -23,12 +31,8 @@ namespace shop.api
             }
            
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
-
             app.MapControllers();
-
             app.Run();
         }
     }

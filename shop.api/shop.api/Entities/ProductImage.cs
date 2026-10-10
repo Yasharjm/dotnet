@@ -1,6 +1,6 @@
 ﻿namespace shop.api.Entities
 {
-    public class ProductImages:BaseEntity
+    public class ProductImage:BaseEntity
     {
         public int ProductId { get; set; }
         public bool IsMain { get; set; }

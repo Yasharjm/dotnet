@@ -6,7 +6,7 @@
         public string  Name { get; set; } =null!;
         public long  Price { get; set; }
         public ProductCategory Category { get; set; } = null!;
-        public List<ProductImages> Images { get; set; } = null!;
+        public List<ProductImage> Images { get; set; } = null!;
 
     }
 }
