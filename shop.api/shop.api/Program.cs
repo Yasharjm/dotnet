@@ -1,39 +1,24 @@
-
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using shop.api.Data;
+using Shop.Api.Data;
 
-namespace shop.api
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            var builder = WebApplication.CreateBuilder(args);
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
-            
-            builder.Services.AddControllers();
-            builder.Services.AddSwaggerGen(); 
-            builder.Services.AddOpenApi();
-            builder.Services.AddDbContext<ApplicationDbContext>(Options =>
-            {
-                Options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection"));
-            });
+var app = builder.Build();
 
-            var app = builder.Build();
-
-           
-            if (app.Environment.IsDevelopment())
-            {
-                app.MapOpenApi();
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
-           
-            app.UseHttpsRedirection();
-            app.UseAuthorization();
-            app.MapControllers();
-            app.Run();
-        }
-    }
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
+app.UseHttpsRedirection();
+app.UseAuthorization();
+app.MapControllers();
+app.Run();

@@ -1,11 +1,10 @@
-﻿namespace shop.api.Entities
+﻿namespace Shop.Api.Entities;
+
+public class UserRole : BaseEntity
 {
-    public class UserRole : BaseEntity
-    {
-        public int UserId { get; set; }
-        public int RoleId { get; set; }
-        public User User { get; set; } = null!;
-        public Role Role { get; set; } =null!;
-        public List<UserRole> Roles { get; set; } = null!;
-    }
+    public int UserId { get; set; }
+    public int RoleId { get; set; }
+
+    public User User { get; set; } = null!;
+    public Role Role { get; set; } = null!;
 }

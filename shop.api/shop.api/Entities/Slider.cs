@@ -1,8 +1,7 @@
-﻿namespace shop.api.Entities
+﻿namespace Shop.Api.Entities;
+
+public class Slider : BaseEntity
 {
-    public class Slider
-    {
-        public string ImageUrl { get; set; } =null!;
-        public bool IsActive { get; set; }
-    }
+    public string ImageUrl { get; set; } = null!;
+    public bool IsActive { get; set; }
 }
